@@ -5,7 +5,7 @@
 VL53L0X sensor;
 
 // Variaveis para armazenar a distancia atual e o ultimo valor lido
-int dist = 0, dist_old = 0;
+int dist_max = 0, dist_min = 30, dist = 0, dist_old = 0;
 // Variavel para armazenar o tempo na parte do timeout
 unsigned long timeout = 0;
 
@@ -26,6 +26,8 @@ void setup()
   // Define um timeout de 500mS para a leitura do sensor
   // Em caso de erro, este será o tempo máximo de espera da resposta do sensor
   sensor.setTimeout(500);
+  delay(50);
+  int dist_max = sensor.readRangeSingleMillimeters(); // Le a distancia inicial
 }
 
 void loop()
@@ -44,7 +46,7 @@ void loop()
 void filtrar_sinal()
 {
   // Se a distância medida for maior que 8000 e ainda não tiver passado 1 segundo de timeout
-  if (dist > 8000 && ((millis() - timeout) < 1000))
+  if (dist > dist_max && ((millis() - timeout) < 1000) && dist < dist_min)
   {
     // Descarta a medição feita e iguala ela à anterior
     dist = dist_old;

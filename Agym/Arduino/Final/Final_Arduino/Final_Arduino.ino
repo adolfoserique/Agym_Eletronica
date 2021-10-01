@@ -8,56 +8,71 @@ VL53L0X sensor;
 // Muda os pinos UART do Arduino 
 SoftwareSerial BTserial(10, 11); // RX | TX
 
-// Variaveis para armazenar a distancia atual e o ultimo valor lido
-int dist = 0, dist_old = 0;
+// Variaveis para armazenar a distancia atual, distancia inicial, o ultimo valor lido e a carga
+int dist_max = 0, dist_min = 30, dist = 0, dist_old = 0;
+float carga = 0, defor = 0;
 // Variavel para armazenar o tempo na parte do timeout
 unsigned long timeout = 0;
 
 void setup()
 {
-  // Perfil de longo alcance
-// sensor.setSignalRateLimit(0.1);
-// sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodPreRange, 18);
-// sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodFinalRange, 14);
-  // Perfil de alta precisão
-  sensor.setMeasurementTimingBudget(200000); 
-  // Inicializa a comunicação serial
-  BTserial.begin(9600);
   // Inicializa a comunicação I2C
   Wire.begin();
   // Inicializa o sensor
   sensor.init();
+  // Perfil de alta precisão
+  sensor.setMeasurementTimingBudget(200000); 
   // Define um timeout de 500mS para a leitura do sensor
   // Em caso de erro, este será o tempo máximo de espera da resposta do sensor
   sensor.setTimeout(500);
+  // Inicialização do valor maximo (5 medidas iniciais)
+  for (int i = 0; i < 5; i++) {
+    dist_max = sensor.readRangeSingleMillimeters();
+    dist = sensor.readRangeSingleMillimeters();
+    delay(50);
+  }
+  // Inicializa a comunicação serial
+  BTserial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   // Faz a medição da distância e retorna um valor em milímetros
-  int dist = sensor.readRangeSingleMillimeters();
+  dist = sensor.readRangeSingleMillimeters();
 
   // Filtra o valor de distancia
-  filtrar_sinal(); 
+  filtrar_sinal();
+
+  defor = dist_max - dist;
+  defor = defor / 10;
+  carga = 0.75 * defor;
  
   // Imprime no monitor serial
-  BTserial.print(dist);
+  BTserial.print(defor, 1);
+  BTserial.print(" cm");
+  BTserial.print(","); // "," para o proximo sensor ou ";" para finalizar a lista de sensores
+  BTserial.print(carga, 2);
+  BTserial.print(" kg");
   BTserial.print(";");
-
-  delay(20);
+  
+  delay(500);
 }
 
 // Função para filtrar o valor medido
-void filtrar_sinal()
-{
-  // Se a distância medida for maior que 8000 e ainda não tiver passado 1 segundo de timeout
-  if (dist > 8000 && ((millis() - timeout) < 1000))
-  {
+void filtrar_sinal() {
+  // Se a distância medida for maior que o máximo e ainda não tiver passado 1 segundo de timeout
+  if ((millis() - timeout) < 1000) {
     // Descarta a medição feita e iguala ela à anterior
     dist = dist_old;
   }
-  else // Caso contrário (medição < 8000 ou passou do timeout)
-  {
+  else if (dist >= dist_max) {
+    // Descarta a medição feita e iguala ela ao máximo
+    dist = dist_max;
+  }
+  else if (dist <= dist_min) {
+    // Descarta a medição feita e iguala ela a zero
+    dist = 0;
+  }
+  else {
     // Não descarta a medição atual e atualiza a medição antiga para a atual
     dist_old = dist;
     timeout = millis(); // Reseta o valor da variável do timeout
