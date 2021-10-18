@@ -30,9 +30,13 @@ float carga = 0, defor = 0;
 unsigned long timeout = 0;
 
 void setup()
+
 { 
   // Inicializa a comunicação I2C
   Wire.begin();
+  // Configura os pinos PB0 e PB2 com resistor pull-up
+  PORTB |=(1<<PB0);
+  PORTB |=(1<<PB2);
   // Inicializa o sensor
   sensor.init();
   // Define um timeout de 500 ms para a leitura do sensor
