@@ -23,7 +23,7 @@ VL53L0X sensor;
 SoftwareSerial BTserial(RX_VX ,TX_VX); // RX | TX
 
 // Variáveis para armazenar a distância maxima, distância minima, distância atual e o último valor lido
-int dist_max = 0, dist_min = 30, dist = 0, dist_old = 0;
+int dist_max = 0, dist_min = 30, dist = 0, dist_old = 0, max_old = 295;
 // Váriáveis para armazenar a carga e a deformação
 float carga = 0, defor = 0;
 // Variavel para armazenar o tempo na parte do timeout
@@ -45,9 +45,12 @@ void setup()
   // Perfil de alta precisão do sensor
   sensor.setMeasurementTimingBudget(200000);
   // Inicialização do valor maximo (5 medidas iniciais)
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i <= 5; i++) {
     dist_max = sensor.readRangeSingleMillimeters();
+    filtrar_maximo();
+    delay(50);
     dist = sensor.readRangeSingleMillimeters();
+    filtrar_sinal();
     delay(50);
   }
   // Inicializa a comunicação serial (UART)
@@ -97,6 +100,30 @@ void filtrar_sinal()
   else {
     // Não descarta a medição atual e atualiza a medição antiga para a atual
     dist_old = dist;
+    // Reseta o valor da variável do timeout
+    timeout = millis(); 
+  }
+}
+
+// Função para filtrar o valor maximo
+void filtrar_maximo()
+{
+  // Se a distância medida for maior que o máximo e ainda não tiver passado 1 segundo de timeout
+  if ((millis() - timeout) < 1000) {
+    // Descarta a medição feita e iguala ela à anterior
+    dist_max = max_old;
+  }
+  else if (dist_max >= 350) {
+    // Descarta a medição feita e iguala ela à anterior
+    dist_max = max_old;
+  }
+  else if (dist_max <= 250) {
+    // Descarta a medição feita e iguala ela à anterior
+    dist_max = max_old;
+  }
+  else {
+    // Não descarta a medição atual e atualiza a medição antiga para a atual
+    max_old = dist_max;
     // Reseta o valor da variável do timeout
     timeout = millis(); 
   }
