@@ -49,9 +49,6 @@ void setup()
     dist_max = sensor.readRangeSingleMillimeters();
     filtrar_maximo();
     delay(50);
-    dist = sensor.readRangeSingleMillimeters();
-    filtrar_sinal();
-    delay(50);
   }
   // Inicializa a comunicação serial (UART)
   BTserial.begin(9600);
@@ -73,7 +70,7 @@ void loop()
   // Imprime no monitor serial
   BTserial.print(defor, 1);
   BTserial.print(" cm");
-  BTserial.print(","); 
+  BTserial.print(",");
   BTserial.print(carga, 2);
   BTserial.print(" kg");
   BTserial.print(";");
