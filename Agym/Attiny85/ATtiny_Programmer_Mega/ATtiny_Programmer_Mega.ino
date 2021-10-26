@@ -70,7 +70,7 @@
 // The standard pin configuration.
 #ifndef ARDUINO_HOODLOADER2
 
-#define RESET     53 // Use pin 10 to reset the target rather than SS
+#define RESET     53 // SS pin
 #define LED_HB    9
 #define LED_ERR   8
 #define LED_PMODE 7
@@ -82,9 +82,9 @@
 
 #ifdef USE_OLD_STYLE_WIRING
 
-#define PIN_MOSI  51
-#define PIN_MISO  50
-#define PIN_SCK   52
+#define PIN_MOSI  51 //MOSI pin
+#define PIN_MISO  50 //MISO pin
+#define PIN_SCK   52 //SCK pin
 
 #endif
 
