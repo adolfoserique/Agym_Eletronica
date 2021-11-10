@@ -25,8 +25,10 @@ SoftwareSerial BTserial(RX_VX, TX_VX); // RX | TX
 
 // Variáveis para armazenar a distância maxima, distância atual e o último valor lido
 int dist_max = 0, dist = 0, dist_old = 0, max_old = 295;
-// Váriáveis para armazenar a carga e a deformação
+// Váriáveis para armazenar a carga e a deformação(unidades: cm e kg / gasta mais memória)
 float carga = 0, defor = 0;
+// Váriáveis para armazenar a carga e a deformação(unidades: mm e g / gasta menos memória)
+//int carga = 0, defor = 0;
 // Variavel para armazenar o tempo na parte do timeout
 unsigned long timeout = 0;
 
@@ -63,6 +65,8 @@ void loop()
 
   // Filtra o valor de distancia medido
   filtrar_sinal();
+
+ //-------------- cm e kg --------------//
   
   // Cálculo da carga
   defor = dist_max - dist;
@@ -76,6 +80,20 @@ void loop()
   BTserial.print(carga, 2);
   BTserial.print(" kg");
   BTserial.print(";");
+
+ //-------------- mm e g --------------//
+
+//    // Cálculo da carga
+//  defor = dist_max - dist;
+//  carga = 75 * defor;
+// 
+//  // Imprime no monitor serial
+//  BTserial.print(defor);
+//  BTserial.print(" mm");
+//  BTserial.print(",");
+//  BTserial.print(carga);
+//  BTserial.print(" g");
+//  BTserial.print(";");
 
   delay(250);
 }
