@@ -1,0 +1,58 @@
+1) Instação da Placa
+	- Abrir o Arduino IDE
+	- Ir em Arquivo
+	- Ir em Preferências
+	- Acicionar a seguinte URL em "URLs Adicionais para Gerenciadores de Placas:": http://drazzy.com/package_drazzy.com_index.json
+	- Ir em Ferramentas
+	- Ir em Placa
+	- Ir em Gerenciador de Placas
+	- Buscar por "ATTinyCore by Spence Konde" e instalar a placa
+	- Reenicie o Arduino IDE
+
+2) Programar o ATTiny85 com um arduino
+	- Gravar o arquivo https://github.com/adolfoserique/Agym_Eletronica/tree/main/Agym/Attiny85/ATtiny_Programmer_Mega no arduino (se o Arduino ultizado for um Arduino Mega)
+		- Se o Arduino utilizado não for uma Arduino Mega, deve-se modificar o código nas linhas 73, 85, 86 e 87 de acordo com os pinos SPI do Arduino utilizado.
+	- Ir para a janela do código que deseja escrever no ATTiny85
+	- Ir em Ferramentas
+	- Ir em Placa
+	- Ir em ATTinyCore
+	- Selecionar "ATtiny 25/45/85 (No bootloader)"
+	- Deixar as configurações padrões
+	- Ir em Programador
+	- Mudar para "Arduino as ISP"
+	- Ir em Gravar Bootloader
+	- Gravar o código no ATTiny85
+
+3) Programar o ATTiny85 com a placa DigiSpark
+	- Baixar o driver em https://github.com/digistump/DigistumpArduino/releases/download/1.6.7/Digistump.Drivers.zip caso o Windows não reconheça a placa (olhar no Gerenciador de Dispositivos)
+		- Para Windows 32 bits execute o DPinst.exe
+		- Para Windows 64 bits execute o DPinst64.exe
+	- Ir para a janela do código que deseja escrever no ATTiny85
+	- Ir em Ferramentas
+	- Ir em Placa
+	- Ir em ATTinyCore
+	- Selecionar "ATtiny 85 (Micronucleus/DigiSpark)"
+	- Deixar as configurações padrões
+	- Ir em Programador
+	- Mudar para "Micronucleus"
+	- Ir em Gravar Bootloader
+	- Gravar o código no ATTiny85
+
+4) Utilizar o pino de Reset do ATTiny85 como um pino programavél fraco
+	- Montar o circuito de acordo com a imagem: https://github.com/adolfoserique/Agym_Eletronica/blob/main/Agym/high-voltage-programmer.jpg e conectar nos respectivos pinos do Arduino
+	- Gravar o código https://github.com/adolfoserique/Agym_Eletronica/tree/main/Agym/Attiny85/ATtiny_PB5_GPIO no Arduino
+	- Ir em Ferramentas
+	- Ir em Monitor Serial
+	- Selecionar a Velicidade 9600
+	- Seguir as instruções da tela
+
+5) Ulizar um Arduino para como serial para um ATTiny85
+	- Conectar o pino desegnado como TX do ATTiny85 no pino RXD0 do Arduino
+	- Conectar o pino desegnado como RX do ATTiny85 no pino TXD0 do Arduino
+	- Abrir o Arduino IDE
+	- Ir em Arquivo
+	- Ir em Novo
+	- Gravar o código da nova janela no Arduino
+	- Ir em Ferramentas
+	- Ir em Monitor Serial
+	- Selecionar a Velicidade disponível no código do ATTiny85
