@@ -9,7 +9,7 @@
 	- Buscar por "ATTinyCore by Spence Konde" e instalar a placa
 	- Reenicie o Arduino IDE
 
-2) Programar o ATTiny85 com um arduino
+2) Programar o ATTiny85 com um Arduino
 	- Gravar o arquivo https://github.com/adolfoserique/Agym_Eletronica/tree/main/Agym/Attiny85/ATtiny_Programmer_Mega no arduino (se o Arduino ultizado for um Arduino Mega)
 		- Se o Arduino utilizado não for uma Arduino Mega, deve-se modificar o código nas linhas 73, 85, 86 e 87 de acordo com os pinos SPI do Arduino utilizado.
 	- Ir para a janela do código que deseja escrever no ATTiny85
