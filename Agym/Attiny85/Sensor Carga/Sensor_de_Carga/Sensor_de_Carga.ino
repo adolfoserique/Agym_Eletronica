@@ -9,8 +9,8 @@
 #define ADSK PB2 //SCK
 
 //--- Pinos para comunicação UART do módulo Bluetooth ---
-#define TX_BT PB3   // Pino como TX
-#define RX_BT PB0   // Pino como RX
+#define TX_BT PB0   // Pino como TX
+#define RX_BT PB3   // Pino como RX
 
 //--- Protótipos das funções ---
 unsigned long read_count(); //Confersor A/D do HX711
