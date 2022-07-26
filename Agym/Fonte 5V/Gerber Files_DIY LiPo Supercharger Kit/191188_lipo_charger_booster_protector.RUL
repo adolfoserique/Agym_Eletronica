@@ -1,0 +1,8 @@
+DRC Rules Export File for PCB: \\192.168.100.43\Labdata$\Projects\19xxxx\191188_lipo_charger_booster_protector\02_lab\hardware\191188_lipo_charger_booster_protector.PcbDoc
+RuleKind=Clearance|RuleName=Clearance_1|Scope=Board|Minimum=7.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
+RuleKind=Clearance|RuleName=ClearancePolygon|Scope=Board|Minimum=15.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=11.81
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.02
+RuleKind=MinimumAnnularRing|RuleName=MinimumAnnularRing_small|Scope=Board|Minimum=6.97
+RuleKind=MinimumAnnularRing|RuleName=MinimumAnnularRing_rest|Scope=Board|Minimum=7.87

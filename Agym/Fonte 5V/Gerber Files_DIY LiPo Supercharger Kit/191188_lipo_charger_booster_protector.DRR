@@ -1,0 +1,22 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: 191188_lipo_charger_booster_protector.PcbDoc   15-7-2020  10:22:47
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : 191188_lipo_charger_booster_protector.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        0.25mm (9.842mil)        Round          5                3.30 mm (0.13 Inch)
+T2        0.254mm (10mil)          Round          18               54.03 mm (2.13 Inch)
+T3        0.3mm (11.811mil)        Round          27               191.47 mm (7.54 Inch)
+T4        0.381mm (15mil)          Round          1                0.00 mm (0.00 Inch)
+T5        0.6mm (23.622mil)        Round          3                3.71 mm (0.15 Inch)
+T6        0.9mm (35.433mil)        Round          15               160.04 mm (6.30 Inch)
+T7        1mm (39.37mil)           Round          6                13.40 mm (0.53 Inch)
+T8        1.5mm (59.055mil)        Round          3                9.40 mm (0.37 Inch)
+T9        3.2mm (125.984mil)       Round          4         NPTH   140.00 mm (5.51 Inch)
+---------------------------------------------------------------------------
+Totals                                            82               575.34 mm (22.65 Inch)
+
+Total Processing Time (hh:mm:ss) : 00:00:01
