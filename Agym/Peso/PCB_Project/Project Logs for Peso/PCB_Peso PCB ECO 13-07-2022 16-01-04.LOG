@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=GND Pin=U3-p
+Add Pin To Net: Unknown Pin: Pin U3-11
+Added Room: Name=MCU
+Added Room: Name=POWER

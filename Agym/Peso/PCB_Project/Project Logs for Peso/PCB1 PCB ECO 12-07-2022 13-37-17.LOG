@@ -1,0 +1,10 @@
+Change Footprint: Footprint Not Found DFN1X1x0.37-4
+Change Component Comment : Designator=U? Old Comment=MIC5504-3.3YMT-TZ New Comment=BAT Protection
+Change component parameters: Designator = "U?" ("U?"); Footprint = "VREG_MIC5504-3.3YMT-TZ"; UniqueID = "\HOPOUTEP" ("\HOPOUTEP")
+Change component parameters (AddParameter): Name = "LCSC Part Number"; Value = "C2759994"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Xysemi"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "XB6042J2SV-L"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "XB6042J2SV-L"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=POWER Member=Component C? 10n
+Added Member To Class: ClassName=POWER Member=Component L? Ferrite Bead
+Added Room: Name=POWER

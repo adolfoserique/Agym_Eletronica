@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=MH-C Pin=J1-B12
+Removed Pin From Net: NetName=GND Pin=U3-p
+Added Pin To Net: NetName=GND Pin=J1-B12
+Add Pin To Net: Unknown Pin: Pin U3-11
