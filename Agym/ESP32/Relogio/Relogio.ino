@@ -148,8 +148,22 @@ void loop() {
           beatAvg /= RATE_SIZE;
         }
       }
+
+      unsigned long currentMillis = millis();
       
-      if (irValue < 50000){
+        // Send readings
+      if (currentMillis - previousMillis >= interval){
+        previousMillis = currentMillis;
+
+        sendData(a.acceleration.x, 2, 2, txString, "Acc X: "); // unidade: m/s^2
+        sendData(a.acceleration.y, 2, 2, txString, "Acc Y: ");
+        sendData(a.acceleration.z, 2, 2, txString, "Acc Z: ");
+      
+        sendData(g.gyro.x, 2, 2, txString, "Gyro X: "); // unidade: rad/s
+        sendData(g.gyro.y, 2, 2, txString, "Gyro Y: "); 
+        sendData(g.gyro.z, 2, 2, txString, "Gyro Z: ");
+        
+        if (irValue < 50000){
         
         pTxCharacteristic->setValue("No finger");
         pTxCharacteristic->notify();
@@ -159,23 +173,8 @@ void loop() {
         pTxCharacteristic->notify(); 
         
       }
-
-      unsigned long currentMillis = millis();
-      
-        // Send readings
-      if (currentMillis - previousMillis >= interval){
-        previousMillis = currentMillis;
-        /* Print out the values */
-        sendData(a.acceleration.x, 2, 2, txString, "Acc X: "); // unidade: m/s^2
-        sendData(a.acceleration.y, 2, 2, txString, "Acc Y: ");
-        sendData(a.acceleration.z, 2, 2, txString, "Acc Z: ");
-      
-        sendData(g.gyro.x, 2, 2, txString, "Gyro X: "); // unidade: rad/s
-        sendData(g.gyro.y, 2, 2, txString, "Gyro Y: "); 
-        sendData(g.gyro.z, 2, 2, txString, "Gyro Z: ");
-
+        else
         sendData(beatAvg, 2, 0, txString, "BPM: ");
-    
       }
    }
 }
